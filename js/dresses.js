@@ -12,8 +12,6 @@
  *  category: 'bridal'  = קולקציית כלות
  *            'evening' = שמלות ערב
  *
- *  שמלות הערב שמתחת הן עדיין דוגמאות זמניות — יוחלפו כשיגיעו תמונות אמיתיות.
- *
  *  מומלץ: תמונות אנכיות ביחס 3:4 (למשל 1200x1600 פיקסלים).
  *  כל עוד קובץ התמונה לא קיים — יוצג רקע עדין במקומו.
  * ==========================================================
@@ -68,28 +66,14 @@ window.DRESSES = [
     ]
   },
   {
-    id: 'noir',
-    title: 'Noir',
-    category: 'evening',
-    image: '' // TODO: תמונה אמיתית
-  },
-  {
-    id: 'champagne',
-    title: 'Champagne',
-    category: 'evening',
-    image: '' // TODO: תמונה אמיתית
-  },
-  {
     id: 'rose',
     title: 'Rose',
     category: 'evening',
-    image: '' // TODO: תמונה אמיתית
-  },
-  {
-    id: 'emerald',
-    title: 'Emerald',
-    category: 'evening',
-    image: '' // TODO: תמונה אמיתית
+    images: [
+      'images/dresses/rose-1.jpg',
+      'images/dresses/rose-2.jpg',
+      'images/dresses/rose-3.jpg'
+    ]
   }
 ];
 

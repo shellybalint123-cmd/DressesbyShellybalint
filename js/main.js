@@ -205,6 +205,19 @@
 
   function showLightboxImage(d, src) {
     lbMedia.innerHTML = mediaHtml(d, 'lightbox__img', src);
+    var img = lbMedia.querySelector('img');
+    if (img) img.addEventListener('load', fitLightboxImage);
+    fitLightboxImage();
+  }
+
+  // ממלא את המסגרת; רק תמונה צרה/גבוהה במיוחד (למשל קולאז') מוצגת במלואה בלי חיתוך
+  function fitLightboxImage() {
+    var img = lbMedia.querySelector('img');
+    if (!img || !img.naturalWidth) return;
+    var box = img.parentElement.getBoundingClientRect();
+    if (!box.height) return;
+    var tall = (img.naturalWidth / img.naturalHeight) < (box.width / box.height) * 0.92;
+    img.classList.toggle('is-contain', tall);
   }
 
   lbThumbs.addEventListener('click', function (e) {
@@ -218,6 +231,7 @@
     lastFocus = trigger || document.activeElement;
     fillLightbox(index);
     lb.hidden = false;
+    fitLightboxImage();
     document.documentElement.classList.add('no-scroll');
     requestAnimationFrame(function () { lb.classList.add('is-open'); });
     lb.querySelector('.lightbox__close').focus();
