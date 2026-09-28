@@ -619,8 +619,7 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
   font-size: clamp(38px, 4vw, 54px); line-height: 1.15;
 }
 .lightbox__rule { width: 48px; height: 1px; background: var(--gold); margin: 28px 0; }
-.lightbox__desc { color: var(--ink-soft); font-size: 18px; line-height: 1.9; margin-bottom: 38px; }
-.lightbox__thumbs { display: flex; gap: 10px; margin: -14px 0 34px; }
+.lightbox__thumbs { display: flex; gap: 10px; margin: 0 0 34px; }
 .lightbox__thumb {
   width: 58px; aspect-ratio: 3 / 4; overflow: hidden;
   background: var(--ivory);

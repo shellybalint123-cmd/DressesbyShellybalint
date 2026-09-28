@@ -176,7 +176,6 @@
   var lbMedia = document.getElementById('lb-media');
   var lbCat = document.getElementById('lb-cat');
   var lbTitle = document.getElementById('lb-title');
-  var lbDesc = document.getElementById('lb-desc');
   var lbWa = document.getElementById('lb-wa');
   var lbThumbs = document.getElementById('lb-thumbs');
   var lbPrev = document.getElementById('lb-prev');
@@ -198,7 +197,6 @@
     }).join('');
     lbCat.textContent = CATEGORY_LABELS[d.category] || '';
     lbTitle.textContent = d.title;
-    lbDesc.textContent = d.description || '';
     lbWa.href = waLink(CONFIG.dressMessage(d.title));
     var multi = visibleDresses.length > 1;
     lbPrev.hidden = !multi;
