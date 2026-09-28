@@ -99,7 +99,9 @@ window.DRESSES = [
     images: [
       'images/dresses/lilac-1.jpg',
       'images/dresses/lilac-2.jpg',
-      'images/dresses/lilac-3.jpg'
+      'images/dresses/lilac-3.jpg',
+      'images/dresses/lilac-4.jpg',
+      'images/dresses/lilac-5.jpg'
     ]
   },
   {
@@ -199,6 +201,14 @@ window.DRESSES = [
       'images/dresses/black-corset-1.jpg',
       'images/dresses/black-corset-2.jpg',
       'images/dresses/black-corset-3.jpg'
+    ]
+  },
+  {
+    id: 'halter-duo',
+    category: 'evening',
+    images: [
+      'images/dresses/halter-duo-1.jpg',
+      'images/dresses/halter-duo-2.jpg'
     ]
   }
 ];
