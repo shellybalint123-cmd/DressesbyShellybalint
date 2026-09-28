@@ -70,7 +70,9 @@ window.DRESSES = [
     title: 'Elizabeth',
     category: 'bridal',
     images: [
-      'images/dresses/elizabeth-1.jpg'
+      'images/dresses/elizabeth-1.jpg',
+      'images/dresses/elizabeth-2.jpg',
+      'images/dresses/elizabeth-3.jpg'
     ]
   },
   {
