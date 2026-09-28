@@ -159,6 +159,28 @@ window.DRESSES = [
     images: [
       'images/dresses/blush-1.jpg'
     ]
+  },
+  {
+    id: 'yellow',
+    category: 'evening',
+    images: [
+      'images/dresses/yellow-1.jpg',
+      'images/dresses/yellow-2.jpg'
+    ]
+  },
+  {
+    id: 'noir-satin',
+    category: 'evening',
+    images: [
+      'images/dresses/noir-satin-1.jpg'
+    ]
+  },
+  {
+    id: 'noir-lace',
+    category: 'evening',
+    images: [
+      'images/dresses/noir-lace-1.jpg'
+    ]
   }
 ];
 
