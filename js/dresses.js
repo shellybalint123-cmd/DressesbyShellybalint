@@ -197,7 +197,8 @@ window.DRESSES = [
     category: 'evening',
     images: [
       'images/dresses/lilac-1.jpg',
-      'images/dresses/lilac-2.jpg'
+      'images/dresses/lilac-2.jpg',
+      'images/dresses/lilac-3.jpg'
     ]
   }
 ];
