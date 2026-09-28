@@ -98,23 +98,26 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="top">
-      <div class="hero__media">
-        <img src="images/hero.jpg" alt="שמלת כלה בסטודיו של Shelly Balint" fetchpriority="high"
-             onerror="this.parentElement.classList.add('is-missing'); this.remove();">
-        <div class="hero__veil"></div>
-      </div>
-
       <div class="hero__content">
         <p class="eyebrow reveal">Atelier de Couture</p>
         <h1 class="hero__title reveal">Shelly Balint</h1>
         <div class="hero__rule reveal" aria-hidden="true"></div>
-        <p class="hero__subtitle reveal">Wedding and Evening Gowns <span>|</span> Haute Couture</p>
+        <p class="hero__subtitle reveal"><span>Wedding and Evening Gowns</span><span class="sep" aria-hidden="true">|</span><span>Haute Couture</span></p>
         <p class="hero__text reveal">שמלות כלה ושמלות ערב בעבודת יד, שנתפרות במיוחד עבורך — מהסקיצה הראשונה ועד הרגע שבו את יוצאת מהסטודיו.</p>
         <div class="hero__cta reveal">
           <a class="btn btn--solid" data-wa data-wa-msg="היי שלי, אשמח לקבוע פגישת ייעוץ בסטודיו" href="https://wa.me/972506657822" target="_blank" rel="noopener">לקביעת פגישת ייעוץ</a>
           <a class="btn btn--ghost" href="#collections">לקולקציות</a>
         </div>
       </div>
+
+      <figure class="hero__media">
+        <div class="hero__frame">
+          <img src="images/hero.jpg" alt="שמלת הכלה Mila מבית Shelly Balint" fetchpriority="high"
+               onerror="this.closest('.hero__media').classList.add('is-missing'); this.remove();">
+        </div>
+        <div class="hero__veil"></div>
+        <figcaption class="hero__caption">Mila — Bridal Collection</figcaption>
+      </figure>
 
       <a href="#collections" class="hero__scroll" aria-label="גלילה לקולקציות"><span></span></a>
     </section>
@@ -280,6 +283,7 @@
         <h3 class="lightbox__title" id="lb-title"></h3>
         <div class="lightbox__rule" aria-hidden="true"></div>
         <p class="lightbox__desc" id="lb-desc"></p>
+        <div class="lightbox__thumbs" id="lb-thumbs" hidden></div>
         <a class="btn btn--solid btn--icon" id="lb-wa" href="#" target="_blank" rel="noopener">
           <svg><use href="#i-whatsapp"/></svg>
           <span>לפרטים על הדגם בוואטסאפ</span>

@@ -32,8 +32,14 @@
     });
   }
 
+  function imagesOf(dress) {
+    if (Array.isArray(dress.images) && dress.images.length) return dress.images;
+    return dress.image ? [dress.image] : [];
+  }
+
   // תמונה עם רקע חלופי עדין כשהקובץ עדיין לא קיים
-  function mediaHtml(dress, extraClass) {
+  function mediaHtml(dress, extraClass, src, hoverSrc) {
+    if (src === undefined) src = imagesOf(dress)[0] || '';
     var alt = dress.alt || ('שמלת ' + dress.title + ' — ' + (CATEGORY_LABELS[dress.category] || ''));
     return (
       '<div class="media ' + (extraClass || '') + '">' +
@@ -41,8 +47,11 @@
           '<span class="media__mono">SB</span>' +
           '<span class="media__name">' + escapeHtml(dress.title) + '</span>' +
         '</div>' +
-        '<img src="' + escapeHtml(dress.image) + '" alt="' + escapeHtml(alt) + '" loading="lazy" decoding="async" ' +
+        '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(alt) + '" loading="lazy" decoding="async" ' +
           'onload="this.parentElement.classList.add(\'is-loaded\')" onerror="this.remove()">' +
+        (hoverSrc
+          ? '<img class="media__hover" src="' + escapeHtml(hoverSrc) + '" alt="" aria-hidden="true" loading="lazy" decoding="async" onerror="this.remove()">'
+          : '') +
       '</div>'
     );
   }
@@ -114,8 +123,9 @@
       return (
         '<article class="card reveal" style="--i:' + (i % 3) + '">' +
           '<button class="card__open" data-index="' + i + '" aria-label="הגדלת שמלת ' + escapeHtml(d.title) + '">' +
-            mediaHtml(d, 'card__media') +
-            '<span class="card__zoom" aria-hidden="true">לצפייה</span>' +
+            mediaHtml(d, 'card__media', imagesOf(d)[0] || '', imagesOf(d)[1]) +
+            '<span class="card__zoom" aria-hidden="true">לצפייה' +
+              (imagesOf(d).length > 1 ? ' · ' + imagesOf(d).length + ' תמונות' : '') + '</span>' +
           '</button>' +
           '<div class="card__body">' +
             '<p class="card__cat">' + escapeHtml(CATEGORY_LABELS[d.category] || '') + '</p>' +
@@ -166,6 +176,7 @@
   var lbTitle = document.getElementById('lb-title');
   var lbDesc = document.getElementById('lb-desc');
   var lbWa = document.getElementById('lb-wa');
+  var lbThumbs = document.getElementById('lb-thumbs');
   var lbPrev = document.getElementById('lb-prev');
   var lbNext = document.getElementById('lb-next');
   var lbIndex = 0;
@@ -175,7 +186,14 @@
     var d = visibleDresses[index];
     if (!d) return;
     lbIndex = index;
-    lbMedia.innerHTML = mediaHtml(d, 'lightbox__img');
+    var imgs = imagesOf(d);
+    showLightboxImage(d, imgs[0] || '');
+    lbThumbs.hidden = imgs.length < 2;
+    lbThumbs.innerHTML = imgs.length < 2 ? '' : imgs.map(function (src, n) {
+      return '<button class="lightbox__thumb' + (n === 0 ? ' is-active' : '') + '" data-src="' + escapeHtml(src) + '" aria-label="תמונה ' + (n + 1) + ' מתוך ' + imgs.length + '">' +
+        '<img src="' + escapeHtml(src) + '" alt="" loading="lazy">' +
+      '</button>';
+    }).join('');
     lbCat.textContent = CATEGORY_LABELS[d.category] || '';
     lbTitle.textContent = d.title;
     lbDesc.textContent = d.description || '';
@@ -184,6 +202,17 @@
     lbPrev.hidden = !multi;
     lbNext.hidden = !multi;
   }
+
+  function showLightboxImage(d, src) {
+    lbMedia.innerHTML = mediaHtml(d, 'lightbox__img', src);
+  }
+
+  lbThumbs.addEventListener('click', function (e) {
+    var t = e.target.closest('.lightbox__thumb');
+    if (!t || t.classList.contains('is-active')) return;
+    lbThumbs.querySelectorAll('.lightbox__thumb').forEach(function (b) { b.classList.toggle('is-active', b === t); });
+    showLightboxImage(visibleDresses[lbIndex], t.dataset.src);
+  });
 
   function openLightbox(index, trigger) {
     lastFocus = trigger || document.activeElement;
