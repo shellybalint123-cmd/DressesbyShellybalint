@@ -108,6 +108,29 @@ window.DRESSES = [
       'images/dresses/sienna-1.jpg',
       'images/dresses/sienna-2.jpg'
     ]
+  },
+  {
+    id: 'green',
+    category: 'evening',
+    images: [
+      'images/dresses/green-1.jpg',
+      'images/dresses/green-2.jpg',
+      'images/dresses/green-3.jpg'
+    ]
+  },
+  {
+    id: 'silver',
+    category: 'evening',
+    images: [
+      'images/dresses/silver-1.jpg'
+    ]
+  },
+  {
+    id: 'blue',
+    category: 'evening',
+    images: [
+      'images/dresses/blue-1.jpg'
+    ]
   }
 ];
 
