@@ -86,6 +86,31 @@ window.DRESSES = [
     ]
   },
   {
+    id: 'yellow',
+    category: 'evening',
+    images: [
+      'images/dresses/yellow-1.jpg',
+      'images/dresses/yellow-2.jpg'
+    ]
+  },
+  {
+    id: 'lilac',
+    category: 'evening',
+    images: [
+      'images/dresses/lilac-1.jpg',
+      'images/dresses/lilac-2.jpg',
+      'images/dresses/lilac-3.jpg'
+    ]
+  },
+  {
+    id: 'sienna',
+    category: 'evening',
+    images: [
+      'images/dresses/sienna-1.jpg',
+      'images/dresses/sienna-2.jpg'
+    ]
+  },
+  {
     id: 'bella',
     category: 'evening',
     images: [
@@ -95,19 +120,18 @@ window.DRESSES = [
     ]
   },
   {
+    id: 'red',
+    category: 'evening',
+    images: [
+      'images/dresses/red-1.jpg'
+    ]
+  },
+  {
     id: 'scarlett',
     category: 'evening',
     images: [
       'images/dresses/scarlett-1.jpg',
       'images/dresses/scarlett-2.jpg'
-    ]
-  },
-  {
-    id: 'sienna',
-    category: 'evening',
-    images: [
-      'images/dresses/sienna-1.jpg',
-      'images/dresses/sienna-2.jpg'
     ]
   },
   {
@@ -134,13 +158,6 @@ window.DRESSES = [
     ]
   },
   {
-    id: 'red',
-    category: 'evening',
-    images: [
-      'images/dresses/red-1.jpg'
-    ]
-  },
-  {
     id: 'copper',
     category: 'evening',
     images: [
@@ -159,14 +176,6 @@ window.DRESSES = [
     category: 'evening',
     images: [
       'images/dresses/blush-1.jpg'
-    ]
-  },
-  {
-    id: 'yellow',
-    category: 'evening',
-    images: [
-      'images/dresses/yellow-1.jpg',
-      'images/dresses/yellow-2.jpg'
     ]
   },
   {
@@ -190,15 +199,6 @@ window.DRESSES = [
       'images/dresses/black-corset-1.jpg',
       'images/dresses/black-corset-2.jpg',
       'images/dresses/black-corset-3.jpg'
-    ]
-  },
-  {
-    id: 'lilac',
-    category: 'evening',
-    images: [
-      'images/dresses/lilac-1.jpg',
-      'images/dresses/lilac-2.jpg',
-      'images/dresses/lilac-3.jpg'
     ]
   }
 ];
