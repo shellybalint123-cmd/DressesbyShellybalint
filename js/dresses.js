@@ -182,6 +182,23 @@ window.DRESSES = [
     images: [
       'images/dresses/noir-lace-1.jpg'
     ]
+  },
+  {
+    id: 'black-corset',
+    category: 'evening',
+    images: [
+      'images/dresses/black-corset-1.jpg',
+      'images/dresses/black-corset-2.jpg',
+      'images/dresses/black-corset-3.jpg'
+    ]
+  },
+  {
+    id: 'lilac',
+    category: 'evening',
+    images: [
+      'images/dresses/lilac-1.jpg',
+      'images/dresses/lilac-2.jpg'
+    ]
   }
 ];
 
