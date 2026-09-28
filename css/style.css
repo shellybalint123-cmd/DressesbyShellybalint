@@ -496,7 +496,6 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
 }
 
 /* ---------- Instagram ---------- */
-.instagram { padding-top: 0; }
 .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .insta-tile { position: relative; display: block; overflow: hidden; }
 .insta-tile .media { aspect-ratio: 1 / 1; }
@@ -548,6 +547,7 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
 .footer .muted { color: rgba(250, 247, 242, 0.5); }
 .hours li { display: grid; grid-template-columns: 18px 70px auto; gap: 12px; }
 .hours .spacer { width: 18px; }
+.hours li > span { justify-self: right; }
 .footer__bottom {
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
   padding-top: 28px;
