@@ -47,8 +47,10 @@
           '<span class="media__mono">SB</span>' +
           '<span class="media__name">' + escapeHtml(dress.title) + '</span>' +
         '</div>' +
-        '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(alt) + '" loading="lazy" decoding="async" ' +
-          'onload="this.parentElement.classList.add(\'is-loaded\')" onerror="this.remove()">' +
+        (src
+          ? '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(alt) + '" loading="lazy" decoding="async" ' +
+            'onload="this.parentElement.classList.add(\'is-loaded\')" onerror="this.remove()">'
+          : '') +
         (hoverSrc
           ? '<img class="media__hover" src="' + escapeHtml(hoverSrc) + '" alt="" aria-hidden="true" loading="lazy" decoding="async" onerror="this.remove()">'
           : '') +
@@ -273,19 +275,27 @@
     touchX = null;
   });
 
-  // ---- גריד אינסטגרם (תמונות מתיקיית images/instagram: insta-01.jpg ... insta-06.jpg) ----
+  // ---- גריד אינסטגרם (INSTAGRAM_IMAGES ב-dresses.js, ואם ריק — תמונות מהקולקציה) ----
   var instaGrid = document.getElementById('insta-grid');
   if (instaGrid) {
-    var tiles = [];
-    for (var i = 1; i <= 6; i++) {
-      tiles.push(
-        '<a class="insta-tile reveal" style="--i:' + (i - 1) + '" href="' + CONFIG.instagram + '" target="_blank" rel="noopener" aria-label="לאינסטגרם של Shelly Balint">' +
-          mediaHtml({ title: '', alt: 'רגע מהסטודיו באינסטגרם', image: 'images/instagram/insta-0' + i + '.jpg' }, 'insta-tile__media') +
+    var instaImages = (window.INSTAGRAM_IMAGES || []).slice(0, 6);
+    if (!instaImages.length) {
+      // תמונה אחת מכל שמלה קודם, ואז השאר
+      var rounds = dresses.map(imagesOf);
+      for (var r = 0; instaImages.length < 6 && r < 4; r++) {
+        rounds.forEach(function (list) {
+          if (list[r] && instaImages.length < 6) instaImages.push(list[r]);
+        });
+      }
+    }
+    instaGrid.innerHTML = instaImages.map(function (src, i) {
+      return (
+        '<a class="insta-tile reveal" style="--i:' + i + '" href="' + CONFIG.instagram + '" target="_blank" rel="noopener" aria-label="לאינסטגרם של Shelly Balint">' +
+          mediaHtml({ title: '', alt: 'רגע מהסטודיו באינסטגרם' }, 'insta-tile__media', src) +
           '<span class="insta-tile__overlay"><svg aria-hidden="true"><use href="#i-instagram"/></svg></span>' +
         '</a>'
       );
-    }
-    instaGrid.innerHTML = tiles.join('');
+    }).join('');
   }
 
   renderGrid();

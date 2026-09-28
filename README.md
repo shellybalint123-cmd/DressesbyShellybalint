@@ -13,7 +13,7 @@ js/dresses.js       — ⭐ רשימת השמלות — כאן מחליפים ש
 js/main.js          — סינון, Lightbox, וואטסאפ, אנימציות
 images/hero.jpg     — תמונת האווירה הראשית (אנכית 3:4, כרגע Mila)
 images/dresses/     — תמונות השמלות (יחס 3:4, מומלץ 1200x1600)
-images/instagram/   — 6 תמונות ריבועיות: insta-01.jpg … insta-06.jpg
+images/instagram/   — תמונות לסקשן האינסטגרם (נרשמות ב-INSTAGRAM_IMAGES בסוף js/dresses.js; אם ריק — מוצגות תמונות מהקולקציה)
 ```
 
 ## החלפת תמונות

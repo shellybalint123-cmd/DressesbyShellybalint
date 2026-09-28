@@ -496,6 +496,7 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
 .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .insta-tile { position: relative; display: block; overflow: hidden; }
 .insta-tile .media { aspect-ratio: 1 / 1; }
+.insta-tile .media img { object-position: center 30%; }
 .insta-tile .media__mono { font-size: 30px; }
 .insta-tile__overlay {
   position: absolute; inset: 0; display: grid; place-items: center;

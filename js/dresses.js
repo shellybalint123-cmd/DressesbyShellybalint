@@ -12,6 +12,8 @@
  *  category: 'bridal'  = קולקציית כלות
  *            'evening' = שמלות ערב
  *
+ *  שמלות הערב שמתחת הן עדיין דוגמאות זמניות — יוחלפו כשיגיעו תמונות אמיתיות.
+ *
  *  מומלץ: תמונות אנכיות ביחס 3:4 (למשל 1200x1600 פיקסלים).
  *  כל עוד קובץ התמונה לא קיים — יוצג רקע עדין במקומו.
  * ==========================================================
@@ -29,59 +31,58 @@ window.DRESSES = [
     description: 'שמלת הולטר מסאטן משי זורם, מחשוף וי עמוק ודרמטי וקפלי שיפון רכים שנאספים לקשר עדין במותן. הגזרה נצמדת לגוף ונפתחת לשובל רך — אלגנטיות נקייה ועל־זמנית.'
   },
   {
-    id: 'celeste',
-    title: 'סלסט',
+    id: 'luna',
+    title: 'לונה',
     category: 'bridal',
-    image: 'images/dresses/bridal-02.jpg',
-    description: 'תחרה צרפתית בעבודת יד על בסיס טול אוורירי, שרוולים ארוכים שקופים וחצאית מלאה ונשפכת.'
+    images: [
+      'images/dresses/luna-1.jpg',
+      'images/dresses/luna-2.jpg'
+    ],
+    description: 'שמלת החלקה מסאטן משי נוזלי, צווארון הולטר גבוה וסגור מלפנים — ומאחור גב חשוף לגמרי, עם צעיף סאטן ארוך שנשפך מהעורף לכל אורך השמלה. מינימליזם שקט, רך ובלתי נשכח.'
   },
   {
-    id: 'noa',
-    title: 'נועה',
+    id: 'alex',
+    title: 'אלכס',
     category: 'bridal',
-    image: 'images/dresses/bridal-03.jpg',
-    description: 'גזרת מרמייד מחמיאה מסאטן כבד, קווים נקיים ומינימליסטיים ושובל ארוך ומרשים.'
-  },
-  {
-    id: 'lumiere',
-    title: 'לומייר',
-    category: 'bridal',
-    image: 'images/dresses/bridal-04.jpg',
-    description: 'מחוך מובנה רקום בחרוזי קריסטל, חצאית אורגנזה בשכבות ותחושה של אור רך בכל תנועה.'
-  },
-  {
-    id: 'elisheva',
-    title: 'אלישבע',
-    category: 'bridal',
-    image: 'images/dresses/bridal-05.jpg',
-    description: 'שמלה צנועה ואלגנטית עם צווארון גבוה, שרוולי תחרה ארוכים וחגורת סאטן דקה במותן.'
+    images: [
+      'images/dresses/alex-1.jpg',
+      'images/dresses/alex-2.jpg'
+    ],
+    description: 'תחרה פרחונית עדינה על בסיס בגוון עור, מחוך סטרפלס מובנה עם קורסטים גלויים ומחשוף וי עמוק, וחצאית תחרה נשפכת שמסתיימת בשובל רך. מוצגת עם כפפות תחרה תואמות.'
   },
   {
     id: 'noir',
     title: 'נואר',
     category: 'evening',
-    image: 'images/dresses/evening-01.jpg',
+    image: '', // TODO: תמונה אמיתית
     description: 'שמלת ערב שחורה מקטיפה, כתף אחת חשופה ושסע גבוה — קלאסיקה על־זמנית לערב בלתי נשכח.'
   },
   {
     id: 'champagne',
     title: 'שמפניה',
     category: 'evening',
-    image: 'images/dresses/evening-02.jpg',
+    image: '', // TODO: תמונה אמיתית
     description: 'סאטן בגוון שמפניה נוצץ, כתפיות דקות וגזרה נשפכת שעוטפת את הגוף ברכות.'
   },
   {
     id: 'rose',
     title: 'רוז',
     category: 'evening',
-    image: 'images/dresses/evening-03.jpg',
+    image: '', // TODO: תמונה אמיתית
     description: 'שיפון בגוון ורוד עתיק, מחשוף וי עדין ושכבות קלילות שזזות איתך על רחבת הריקודים.'
   },
   {
     id: 'emerald',
     title: 'אמרלד',
     category: 'evening',
-    image: 'images/dresses/evening-04.jpg',
+    image: '', // TODO: תמונה אמיתית
     description: 'ירוק אמרלד עמוק במשי כבד, קורסט מובנה וחצאית עפרון ארוכה — נוכחות שקטה ומלכותית.'
   }
 ];
+
+/**
+ * תמונות לסקשן האינסטגרם (עד 6, ריבועיות או אנכיות).
+ * כל עוד הרשימה ריקה — מוצגות תמונות מהקולקציה.
+ * דוגמה: 'images/instagram/insta-01.jpg'
+ */
+window.INSTAGRAM_IMAGES = [];
