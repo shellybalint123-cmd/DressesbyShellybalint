@@ -103,6 +103,15 @@ window.DRESSES = [
       'images/dresses/scarlett-1.jpg',
       'images/dresses/scarlett-2.jpg'
     ]
+  },
+  {
+    id: 'sienna',
+    title: 'Sienna', // שם זמני — ממתין לאישור
+    category: 'evening',
+    images: [
+      'images/dresses/sienna-1.jpg',
+      'images/dresses/sienna-2.jpg'
+    ]
   }
 ];
 
