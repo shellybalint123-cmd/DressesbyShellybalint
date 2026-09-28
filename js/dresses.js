@@ -32,7 +32,7 @@ window.DRESSES = [
   },
   {
     id: 'luna',
-    title: 'לונה',
+    title: 'Luna',
     category: 'bridal',
     images: [
       'images/dresses/luna-1.jpg',
@@ -42,7 +42,7 @@ window.DRESSES = [
   },
   {
     id: 'alex',
-    title: 'אלכס',
+    title: 'Alex',
     category: 'bridal',
     images: [
       'images/dresses/alex-1.jpg',
@@ -52,7 +52,7 @@ window.DRESSES = [
   },
   {
     id: 'chloe',
-    title: 'קלואי',
+    title: 'Chloe',
     category: 'bridal',
     images: [
       'images/dresses/chloe-1.jpg'
@@ -61,28 +61,28 @@ window.DRESSES = [
   },
   {
     id: 'noir',
-    title: 'נואר',
+    title: 'Noir',
     category: 'evening',
     image: '', // TODO: תמונה אמיתית
     description: 'שמלת ערב שחורה מקטיפה, כתף אחת חשופה ושסע גבוה — קלאסיקה על־זמנית לערב בלתי נשכח.'
   },
   {
     id: 'champagne',
-    title: 'שמפניה',
+    title: 'Champagne',
     category: 'evening',
     image: '', // TODO: תמונה אמיתית
     description: 'סאטן בגוון שמפניה נוצץ, כתפיות דקות וגזרה נשפכת שעוטפת את הגוף ברכות.'
   },
   {
     id: 'rose',
-    title: 'רוז',
+    title: 'Rose',
     category: 'evening',
     image: '', // TODO: תמונה אמיתית
     description: 'שיפון בגוון ורוד עתיק, מחשוף וי עדין ושכבות קלילות שזזות איתך על רחבת הריקודים.'
   },
   {
     id: 'emerald',
-    title: 'אמרלד',
+    title: 'Emerald',
     category: 'evening',
     image: '', // TODO: תמונה אמיתית
     description: 'ירוק אמרלד עמוק במשי כבד, קורסט מובנה וחצאית עפרון ארוכה — נוכחות שקטה ומלכותית.'
