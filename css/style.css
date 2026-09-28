@@ -449,6 +449,8 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
   align-items: start;
   gap: 0 clamp(8px, 2vw, 24px);
 }
+.steps--2 { grid-template-columns: 1fr 60px 1fr; max-width: 820px; margin-inline: auto; }
+.process-tabs { margin-top: calc(clamp(48px, 7vw, 80px) * -0.5); }
 .step { text-align: center; padding-inline: 8px; }
 .step__num {
   display: inline-grid; place-items: center;
@@ -711,7 +713,7 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
   .hero__cta { margin-top: 30px; }
   .hero__scroll { display: none; }
 
-  .steps { grid-template-columns: 1fr; gap: 0; }
+  .steps, .steps--2 { grid-template-columns: 1fr; gap: 0; }
   .step__line { width: 1px; height: 56px; margin: 26px auto; background: linear-gradient(transparent, var(--gold-soft), transparent); }
 
   .lightbox { padding: 0; }

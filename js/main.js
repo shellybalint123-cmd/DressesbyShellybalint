@@ -115,7 +115,7 @@
 
   // ---- גריד הקולקציות ----
   var grid = document.getElementById('dress-grid');
-  var tabs = document.querySelectorAll('.tab');
+  var tabs = document.querySelectorAll('.collections .tab');
   var currentFilter = 'all';
   var visibleDresses = dresses.slice();
 
@@ -313,6 +313,21 @@
       );
     }).join('');
   }
+
+  // ---- התהליך: השכרה / תפירה אישית ----
+  var ptabs = document.querySelectorAll('.process-tabs .tab');
+  ptabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      ptabs.forEach(function (t) {
+        var active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', String(active));
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        panel.hidden = !active;
+        if (active) observeReveal(panel);
+      });
+    });
+  });
 
   renderGrid();
   observeReveal(document);
