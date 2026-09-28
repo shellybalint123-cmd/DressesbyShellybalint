@@ -84,6 +84,25 @@ window.DRESSES = [
       'images/dresses/rose-2.jpg',
       'images/dresses/rose-3.jpg'
     ]
+  },
+  {
+    id: 'bella',
+    title: 'Bella', // שם זמני — ממתין לאישור
+    category: 'evening',
+    images: [
+      'images/dresses/bella-1.jpg',
+      'images/dresses/bella-2.jpg',
+      'images/dresses/bella-3.jpg'
+    ]
+  },
+  {
+    id: 'scarlett',
+    title: 'Scarlett', // שם זמני — ממתין לאישור
+    category: 'evening',
+    images: [
+      'images/dresses/scarlett-1.jpg',
+      'images/dresses/scarlett-2.jpg'
+    ]
   }
 ];
 
