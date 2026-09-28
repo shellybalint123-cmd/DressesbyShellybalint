@@ -42,7 +42,7 @@
   // תמונה עם רקע חלופי עדין כשהקובץ עדיין לא קיים
   function mediaHtml(dress, extraClass, src, hoverSrc) {
     if (src === undefined) src = imagesOf(dress)[0] || '';
-    var alt = dress.alt || (dress.title
+    var alt = dress.alt !== undefined ? dress.alt : (dress.title
       ? 'שמלת ' + dress.title + ' — ' + (CATEGORY_LABELS[dress.category] || '')
       : (CATEGORY_LABELS[dress.category] || 'שמלה') + ' — Shelly Balint');
     return (
@@ -308,7 +308,7 @@
     instaGrid.innerHTML = instaImages.map(function (src, i) {
       return (
         '<a class="insta-tile reveal" style="--i:' + i + '" href="' + CONFIG.instagram + '" target="_blank" rel="noopener" aria-label="לאינסטגרם של Shelly Balint">' +
-          mediaHtml({ title: '', alt: 'רגע מהסטודיו באינסטגרם' }, 'insta-tile__media', src) +
+          mediaHtml({ title: '', alt: '' }, 'insta-tile__media', src) +
           '<span class="insta-tile__overlay"><svg aria-hidden="true"><use href="#i-instagram"/></svg></span>' +
         '</a>'
       );
