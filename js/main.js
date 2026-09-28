@@ -9,8 +9,9 @@
     whatsapp: '972506657822',
     instagram: 'https://www.instagram.com/shelly_balint/',
     defaultMessage: 'היי שלי, הגעתי מהאתר ואשמח לפרטים נוספים',
-    dressMessage: function (title) {
-      return 'היי, ראיתי באתר את שמלת ' + title + ' ואשמח לפרטים נוספים';
+    dressMessage: function (d) {
+      if (d.title) return 'היי, ראיתי באתר את שמלת ' + d.title + ' ואשמח לפרטים נוספים';
+      return 'היי, ראיתי באתר ' + (d.category === 'evening' ? 'שמלת ערב' : 'שמלה') + ' ואשמח לפרטים נוספים';
     }
   };
 
@@ -40,7 +41,9 @@
   // תמונה עם רקע חלופי עדין כשהקובץ עדיין לא קיים
   function mediaHtml(dress, extraClass, src, hoverSrc) {
     if (src === undefined) src = imagesOf(dress)[0] || '';
-    var alt = dress.alt || ('שמלת ' + dress.title + ' — ' + (CATEGORY_LABELS[dress.category] || ''));
+    var alt = dress.alt || (dress.title
+      ? 'שמלת ' + dress.title + ' — ' + (CATEGORY_LABELS[dress.category] || '')
+      : (CATEGORY_LABELS[dress.category] || 'שמלה') + ' — Shelly Balint');
     return (
       '<div class="media ' + (extraClass || '') + '">' +
         '<div class="media__placeholder" aria-hidden="true">' +
@@ -124,15 +127,15 @@
     grid.innerHTML = visibleDresses.map(function (d, i) {
       return (
         '<article class="card reveal" style="--i:' + (i % 3) + '">' +
-          '<button class="card__open" data-index="' + i + '" aria-label="הגדלת שמלת ' + escapeHtml(d.title) + '">' +
+          '<button class="card__open" data-index="' + i + '" aria-label="' + (d.title ? 'הגדלת שמלת ' + escapeHtml(d.title) : 'הגדלת התמונה') + '">' +
             mediaHtml(d, 'card__media', imagesOf(d)[0] || '', imagesOf(d)[1]) +
             '<span class="card__zoom" aria-hidden="true">לצפייה' +
               (imagesOf(d).length > 1 ? ' · ' + imagesOf(d).length + ' תמונות' : '') + '</span>' +
           '</button>' +
           '<div class="card__body">' +
             '<p class="card__cat">' + escapeHtml(CATEGORY_LABELS[d.category] || '') + '</p>' +
-            '<h3 class="card__title">' + escapeHtml(d.title) + '</h3>' +
-            '<a class="card__cta" href="' + waLink(CONFIG.dressMessage(d.title)) + '" target="_blank" rel="noopener">' +
+            (d.title ? '<h3 class="card__title">' + escapeHtml(d.title) + '</h3>' : '') +
+            '<a class="card__cta" href="' + waLink(CONFIG.dressMessage(d)) + '" target="_blank" rel="noopener">' +
               '<svg aria-hidden="true"><use href="#i-whatsapp"/></svg>' +
               '<span>לתיאום מדידה</span>' +
             '</a>' +
@@ -196,8 +199,9 @@
       '</button>';
     }).join('');
     lbCat.textContent = CATEGORY_LABELS[d.category] || '';
-    lbTitle.textContent = d.title;
-    lbWa.href = waLink(CONFIG.dressMessage(d.title));
+    lbTitle.textContent = d.title || '';
+    lbTitle.hidden = !d.title;
+    lbWa.href = waLink(CONFIG.dressMessage(d));
     var multi = visibleDresses.length > 1;
     lbPrev.hidden = !multi;
     lbNext.hidden = !multi;

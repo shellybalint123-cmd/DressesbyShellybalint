@@ -7,7 +7,7 @@
  *  2. בשדה images רשמי את כל התמונות של השמלה — הראשונה היא התמונה הראשית,
  *     השנייה מופיעה במעבר עכבר, וכולן מוצגות בגלריה בחלון התקריב.
  *     (לשמלה עם תמונה אחת אפשר גם לכתוב image: '...' במקום images)
- *  3. עדכני את title (שם השמלה)
+ *  3. עדכני את title (שם השמלה). בלי title — השמלה מוצגת ללא שם (כמו בשמלות הערב)
  *
  *  category: 'bridal'  = קולקציית כלות
  *            'evening' = שמלות ערב
@@ -77,7 +77,6 @@ window.DRESSES = [
   },
   {
     id: 'rose',
-    title: 'Rose',
     category: 'evening',
     images: [
       'images/dresses/rose-1.jpg',
@@ -87,7 +86,6 @@ window.DRESSES = [
   },
   {
     id: 'bella',
-    title: 'Bella', // שם זמני — ממתין לאישור
     category: 'evening',
     images: [
       'images/dresses/bella-1.jpg',
@@ -97,7 +95,6 @@ window.DRESSES = [
   },
   {
     id: 'scarlett',
-    title: 'Scarlett', // שם זמני — ממתין לאישור
     category: 'evening',
     images: [
       'images/dresses/scarlett-1.jpg',
@@ -106,7 +103,6 @@ window.DRESSES = [
   },
   {
     id: 'sienna',
-    title: 'Sienna', // שם זמני — ממתין לאישור
     category: 'evening',
     images: [
       'images/dresses/sienna-1.jpg',
