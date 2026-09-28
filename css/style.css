@@ -359,6 +359,7 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
 }
 .media.is-loaded img { opacity: 1; }
 .media.is-loaded .media__placeholder { visibility: hidden; }
+.card__media img { object-position: center 18%; } /* שומר על הפנים בתמונות גבוהות */
 .media.is-loaded .media__hover { opacity: 0; }
 @media (hover: hover) {
   .card__open:hover .media.is-loaded .media__hover { opacity: 1; }

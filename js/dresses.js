@@ -66,6 +66,14 @@ window.DRESSES = [
     ]
   },
   {
+    id: 'elizabeth',
+    title: 'Elizabeth',
+    category: 'bridal',
+    images: [
+      'images/dresses/elizabeth-1.jpg'
+    ]
+  },
+  {
     id: 'rose',
     title: 'Rose',
     category: 'evening',
