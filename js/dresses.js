@@ -131,6 +131,13 @@ window.DRESSES = [
     images: [
       'images/dresses/blue-1.jpg'
     ]
+  },
+  {
+    id: 'red',
+    category: 'evening',
+    images: [
+      'images/dresses/red-1.jpg'
+    ]
   }
 ];
 
