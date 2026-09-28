@@ -358,6 +358,7 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
   transition: opacity .8s var(--ease), transform 1.4s var(--ease);
 }
 .media.is-loaded img { opacity: 1; }
+.media.is-loaded .media__placeholder { visibility: hidden; }
 .media.is-loaded .media__hover { opacity: 0; }
 @media (hover: hover) {
   .card__open:hover .media.is-loaded .media__hover { opacity: 1; }
@@ -604,7 +605,8 @@ svg { width: 1em; height: 1em; flex-shrink: 0; }
 
 .lightbox__media { position: relative; overflow: hidden; }
 .lightbox__img { height: 100%; max-height: calc(100vh - 48px); max-height: calc(100svh - 48px); aspect-ratio: 3 / 4; width: 100%; }
-.lightbox__img img { animation: lbImg .6s var(--ease); }
+.lightbox__img { background: var(--ivory); }
+.lightbox__img img { object-fit: contain; animation: lbImg .6s var(--ease); }
 @keyframes lbImg { from { transform: scale(1.03); } to { transform: none; } }
 
 .lightbox__info {
