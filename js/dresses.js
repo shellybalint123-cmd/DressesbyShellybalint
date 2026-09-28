@@ -11,12 +11,22 @@
  *
  *  category: 'bridal'  = קולקציית כלות
  *            'evening' = שמלות ערב
+ *            'both'    = כלה וערב — מופיע רק בטאב "הכל"
  *
  *  מומלץ: תמונות אנכיות ביחס 3:4 (למשל 1200x1600 פיקסלים).
  *  כל עוד קובץ התמונה לא קיים — יוצג רקע עדין במקומו.
  * ==========================================================
  */
 window.DRESSES = [
+  {
+    id: 'rose',
+    category: 'both',
+    images: [
+      'images/dresses/rose-1.jpg',
+      'images/dresses/rose-2.jpg',
+      'images/dresses/rose-3.jpg'
+    ]
+  },
   {
     id: 'mila',
     title: 'Mila',
@@ -73,15 +83,6 @@ window.DRESSES = [
       'images/dresses/elizabeth-1.jpg',
       'images/dresses/elizabeth-2.jpg',
       'images/dresses/elizabeth-3.jpg'
-    ]
-  },
-  {
-    id: 'rose',
-    category: 'evening',
-    images: [
-      'images/dresses/rose-1.jpg',
-      'images/dresses/rose-2.jpg',
-      'images/dresses/rose-3.jpg'
     ]
   },
   {

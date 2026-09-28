@@ -17,7 +17,8 @@
 
   var CATEGORY_LABELS = {
     bridal: 'קולקציית כלות',
-    evening: 'שמלות ערב'
+    evening: 'שמלות ערב',
+    both: 'כלה וערב' // מופיע רק בטאב "הכל"
   };
 
   var dresses = Array.isArray(window.DRESSES) ? window.DRESSES : [];
