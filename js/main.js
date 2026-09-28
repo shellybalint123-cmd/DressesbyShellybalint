@@ -1,0 +1,264 @@
+/* ==========================================================
+   Shelly Balint Atelier — main.js
+   ========================================================== */
+(function () {
+  'use strict';
+
+  // ---- הגדרות כלליות ----
+  var CONFIG = {
+    whatsapp: '972506657822',
+    instagram: 'https://www.instagram.com/shelly_balint/',
+    defaultMessage: 'היי שלי, הגעתי מהאתר ואשמח לפרטים נוספים',
+    dressMessage: function (title) {
+      return 'היי, ראיתי באתר את שמלת ' + title + ' ואשמח לפרטים נוספים';
+    }
+  };
+
+  var CATEGORY_LABELS = {
+    bridal: 'קולקציית כלות',
+    evening: 'שמלות ערב'
+  };
+
+  var dresses = Array.isArray(window.DRESSES) ? window.DRESSES : [];
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function waLink(message) {
+    return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(message || CONFIG.defaultMessage);
+  }
+
+  function escapeHtml(str) {
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // תמונה עם רקע חלופי עדין כשהקובץ עדיין לא קיים
+  function mediaHtml(dress, extraClass) {
+    var alt = dress.alt || ('שמלת ' + dress.title + ' — ' + (CATEGORY_LABELS[dress.category] || ''));
+    return (
+      '<div class="media ' + (extraClass || '') + '">' +
+        '<div class="media__placeholder" aria-hidden="true">' +
+          '<span class="media__mono">SB</span>' +
+          '<span class="media__name">' + escapeHtml(dress.title) + '</span>' +
+        '</div>' +
+        '<img src="' + escapeHtml(dress.image) + '" alt="' + escapeHtml(alt) + '" loading="lazy" decoding="async" ' +
+          'onload="this.parentElement.classList.add(\'is-loaded\')" onerror="this.remove()">' +
+      '</div>'
+    );
+  }
+
+  // ---- כל הקישורים הכלליים לוואטסאפ ----
+  document.querySelectorAll('[data-wa]').forEach(function (el) {
+    el.href = waLink(el.getAttribute('data-wa-msg'));
+  });
+
+  // ---- שנה בפוטר ----
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ---- ניווט: אפקט גלילה + תפריט מובייל ----
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  var mobileMenu = document.getElementById('mobile-menu');
+
+  function onScroll() {
+    nav.classList.toggle('is-scrolled', window.scrollY > 24);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  function setMenu(open) {
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'סגירת תפריט' : 'פתיחת תפריט');
+    nav.classList.toggle('is-open', open);
+    mobileMenu.hidden = !open;
+  }
+  burger.addEventListener('click', function () {
+    setMenu(burger.getAttribute('aria-expanded') !== 'true');
+  });
+  mobileMenu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') setMenu(false);
+  });
+
+  // ---- אנימציות כניסה בגלילה ----
+  var revealObserver = 'IntersectionObserver' in window && !reduceMotion
+    ? new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+    : null;
+
+  function observeReveal(root) {
+    (root || document).querySelectorAll('.reveal:not(.is-visible)').forEach(function (el) {
+      if (revealObserver) revealObserver.observe(el);
+      else el.classList.add('is-visible');
+    });
+  }
+
+  // ---- גריד הקולקציות ----
+  var grid = document.getElementById('dress-grid');
+  var tabs = document.querySelectorAll('.tab');
+  var currentFilter = 'all';
+  var visibleDresses = dresses.slice();
+
+  function renderGrid() {
+    visibleDresses = dresses.filter(function (d) {
+      return currentFilter === 'all' || d.category === currentFilter;
+    });
+
+    grid.innerHTML = visibleDresses.map(function (d, i) {
+      return (
+        '<article class="card reveal" style="--i:' + (i % 3) + '">' +
+          '<button class="card__open" data-index="' + i + '" aria-label="הגדלת שמלת ' + escapeHtml(d.title) + '">' +
+            mediaHtml(d, 'card__media') +
+            '<span class="card__zoom" aria-hidden="true">לצפייה</span>' +
+          '</button>' +
+          '<div class="card__body">' +
+            '<p class="card__cat">' + escapeHtml(CATEGORY_LABELS[d.category] || '') + '</p>' +
+            '<h3 class="card__title">' + escapeHtml(d.title) + '</h3>' +
+            '<a class="card__cta" href="' + waLink(CONFIG.dressMessage(d.title)) + '" target="_blank" rel="noopener">' +
+              '<svg aria-hidden="true"><use href="#i-whatsapp"/></svg>' +
+              '<span>לתיאום מדידה</span>' +
+            '</a>' +
+          '</div>' +
+        '</article>'
+      );
+    }).join('');
+
+    if (!visibleDresses.length) {
+      grid.innerHTML = '<p class="grid__empty">בקרוב — שמלות חדשות בקטגוריה זו.</p>';
+    }
+    observeReveal(grid);
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      if (tab.dataset.filter === currentFilter) return;
+      currentFilter = tab.dataset.filter;
+      tabs.forEach(function (t) {
+        var active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', String(active));
+      });
+
+      if (reduceMotion) { renderGrid(); return; }
+      grid.classList.add('is-fading');
+      setTimeout(function () {
+        renderGrid();
+        grid.classList.remove('is-fading');
+      }, 280);
+    });
+  });
+
+  grid.addEventListener('click', function (e) {
+    var btn = e.target.closest('.card__open');
+    if (btn) openLightbox(Number(btn.dataset.index), btn);
+  });
+
+  // ---- Lightbox ----
+  var lb = document.getElementById('lightbox');
+  var lbMedia = document.getElementById('lb-media');
+  var lbCat = document.getElementById('lb-cat');
+  var lbTitle = document.getElementById('lb-title');
+  var lbDesc = document.getElementById('lb-desc');
+  var lbWa = document.getElementById('lb-wa');
+  var lbPrev = document.getElementById('lb-prev');
+  var lbNext = document.getElementById('lb-next');
+  var lbIndex = 0;
+  var lastFocus = null;
+
+  function fillLightbox(index) {
+    var d = visibleDresses[index];
+    if (!d) return;
+    lbIndex = index;
+    lbMedia.innerHTML = mediaHtml(d, 'lightbox__img');
+    lbCat.textContent = CATEGORY_LABELS[d.category] || '';
+    lbTitle.textContent = d.title;
+    lbDesc.textContent = d.description || '';
+    lbWa.href = waLink(CONFIG.dressMessage(d.title));
+    var multi = visibleDresses.length > 1;
+    lbPrev.hidden = !multi;
+    lbNext.hidden = !multi;
+  }
+
+  function openLightbox(index, trigger) {
+    lastFocus = trigger || document.activeElement;
+    fillLightbox(index);
+    lb.hidden = false;
+    document.documentElement.classList.add('no-scroll');
+    requestAnimationFrame(function () { lb.classList.add('is-open'); });
+    lb.querySelector('.lightbox__close').focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    document.documentElement.classList.remove('no-scroll');
+    setTimeout(function () { lb.hidden = true; }, reduceMotion ? 0 : 350);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  function step(dir) {
+    var n = visibleDresses.length;
+    fillLightbox((lbIndex + dir + n) % n);
+  }
+
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('[data-close]')) closeLightbox();
+  });
+  // ב-RTL: "הקודם" מימין, "הבא" משמאל
+  lbPrev.addEventListener('click', function () { step(-1); });
+  lbNext.addEventListener('click', function () { step(1); });
+
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) setMenu(false);
+      return;
+    }
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') step(1);
+    else if (e.key === 'ArrowRight') step(-1);
+    else if (e.key === 'Tab') {
+      // מלכודת פוקוס בתוך החלון
+      var focusables = Array.prototype.filter.call(
+        lb.querySelectorAll('button, a[href]'),
+        function (el) { return !el.hidden && el.offsetParent !== null; }
+      );
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  // החלקה במובייל
+  var touchX = null;
+  lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) step(dx > 0 ? 1 : -1);
+    touchX = null;
+  });
+
+  // ---- גריד אינסטגרם (תמונות מתיקיית images/instagram: insta-01.jpg ... insta-06.jpg) ----
+  var instaGrid = document.getElementById('insta-grid');
+  if (instaGrid) {
+    var tiles = [];
+    for (var i = 1; i <= 6; i++) {
+      tiles.push(
+        '<a class="insta-tile reveal" style="--i:' + (i - 1) + '" href="' + CONFIG.instagram + '" target="_blank" rel="noopener" aria-label="לאינסטגרם של Shelly Balint">' +
+          mediaHtml({ title: '', alt: 'רגע מהסטודיו באינסטגרם', image: 'images/instagram/insta-0' + i + '.jpg' }, 'insta-tile__media') +
+          '<span class="insta-tile__overlay"><svg aria-hidden="true"><use href="#i-instagram"/></svg></span>' +
+        '</a>'
+      );
+    }
+    instaGrid.innerHTML = tiles.join('');
+  }
+
+  renderGrid();
+  observeReveal(document);
+})();
