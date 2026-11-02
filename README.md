@@ -3,7 +3,7 @@
 אתר תדמית לסטודיו לשמלות כלה ושמלות ערב (Haute Couture). עברית מלאה (RTL), HTML/CSS/JS נקי — בלי התקנות ובלי build.
 
 ## הרצה
-פשוט לפתוח את `index.html` בדפדפן, או להעלות את התיקייה כמו שהיא לכל אחסון סטטי (GitHub Pages, Netlify, Vercel).
+פשוט לפתוח את `index.html` בדפדפן. האתר מתארח ב-**Cloudflare Pages** (ראו למטה).
 
 ## מבנה
 ```
@@ -31,3 +31,20 @@ images/instagram/   — תמונות לסקשן האינסטגרם (נרשמות
 
 ## להשלמה
 - כתובת הסטודיו ושעות הפתיחה בפוטר (`index.html`, חלק FOOTER).
+
+## פרסום ב-Cloudflare Pages
+האתר סטטי, אין build. חיבור חד-פעמי:
+1. נכנסים ל-[dash.cloudflare.com](https://dash.cloudflare.com) ← **Workers & Pages** ← **Create** ← לשונית **Pages** ← **Connect to Git**.
+2. מחברים את חשבון GitHub ‏`shellybalint123-cmd` ובוחרים את הריפו `sbmedia`.
+3. הגדרות:
+   - **Production branch:** `main`
+   - **Framework preset:** `None`
+   - **Build command:** ריק
+   - **Build output directory:** `/`
+4. **Save and Deploy**. האתר יעלה בכתובת `https://<שם-הפרויקט>.pages.dev`.
+
+מכאן כל `push` ל-`main` מעדכן את האתר אוטומטית, וכל ענף אחר מקבל כתובת תצוגה מקדימה משלו (Preview).
+
+אחרי שיש כתובת סופית (pages.dev או דומיין משלך דרך **Custom domains**), מעדכנים ב-`index.html` את `og:url`, `og:image` ו-`canonical`.
+
+הקובץ `_headers` מגדיר כותרות אבטחה ו-cache לתמונות/CSS/JS.
